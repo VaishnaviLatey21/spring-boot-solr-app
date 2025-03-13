@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: springboot-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: springboot-app
+  template:
+    metadata:
+      labels:
+        app: springboot-app
+    spec:
+      containers:
+        - name: springboot-app
+          image: vaishnavi2131/solr-spring-app:latest
+          ports: 
+            - containerPort: 8080
+          env:
+            - name: SOLR_HOST
+              value: "solr-service:8983"

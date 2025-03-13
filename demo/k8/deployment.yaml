@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: solr-spring-app
+  labels:
+    app: solr-spring-app
+spec: 
+  replicas: 1
+  selector:
+    matchLabels: 
+      app: solr-spring-app
+  template:
+    metadata:
+      labels:
+        app: solr-spring-app
+    spec:
+      containers:
+      - name: solr-spring-app
+        image: vaishnavi2131/solr-spring-app:latest
+        ports:
+        - containerPort: 8080
+
+
