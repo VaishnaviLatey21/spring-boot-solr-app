@@ -11,10 +11,10 @@ import java.util.List;
 @RequestMapping("/products")
 public class ProductController {
 
-    @Autowired
+	@Autowired
     private ProductService productService;
 
-    @PostMapping("/add")
+	@PostMapping("/add")
     public String addProduct(@RequestBody Product product) {
         try {
             return productService.addProduct(product);
@@ -23,26 +23,32 @@ public class ProductController {
         }
     }
     
-//    @GetMapping("/get")
-//    public String getProducts() {
-//        try {
-//            return productService.getAllProducts();
-//        } catch (Exception e) {
-//            return "Error: " + e.getMessage();
-//        }
-//    }
+	@GetMapping("/")
+	public Object getProducts() {
+	    try {
+	        return productService.getAllProducts();
+	    }  catch (Exception e) {
+	        System.out.println("Error fetching products: " + e.getMessage());
+	        return null;
+	    }
+	}
 
-    @GetMapping("/")
-    public String home() {
-        return "Hello, World!";
+    
+    @GetMapping("/search")
+    public List<Product> searchProducts(@RequestParam String keyword) {
+        try {
+            return productService.searchProducts(keyword);
+        } catch (Exception e) {
+            return null;
+        }
     }
     
-//    @GetMapping("/search")
-//    public List<Product> searchProducts(@RequestParam String keyword) {
-//        try {
-//            return productService.searchProducts(keyword);
-//        } catch (Exception e) {
-//            return null;
-//        }
-//    }
+    @PutMapping("/update/{id}")
+    public String updateProduct(@PathVariable String id, @RequestBody Product product) {
+        try {
+            return productService.updateProduct(id, product);
+        } catch (Exception e) {
+            return "Error: " + e.getMessage();
+        }
+    }
 }

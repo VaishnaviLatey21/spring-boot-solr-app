@@ -4,7 +4,7 @@ import org.apache.solr.client.solrj.beans.Field;
 
 public class Product {
     @Field
-    private String id;
+    private int id; // Changed to int
 
     @Field
     private String name;
@@ -12,8 +12,8 @@ public class Product {
     @Field
     private double price;
 
-    public String getId() { return id; }
-    public void setId(String id) { this.id = id; }
+    public int getId() { return id; }
+    public void setId(int id) { this.id = id; }
 
     public String getName() { return name; }
     public void setName(String name) { this.name = name; }
